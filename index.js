@@ -10,7 +10,7 @@ const db = mongoose.connect("mongodb://localhost:27017/employeecli", {
 
 //import modal
 const Employee = require("./models/employee");
-//const employee = require("./models/employee");
+
 
 //Add employee
 const addEmployee = (employee) => {
@@ -20,6 +20,20 @@ const addEmployee = (employee) => {
     })
 }
 
-
-
 //Remove Employee
+const findEmployee = (name) => {
+    //Make case insensitive
+    const search = new RegExp(name, 'i');
+    Employee.find({ $or: [{ firstName: search }, { lastName: search }] })
+        .then(employee => {
+            console.info(employee);
+            console.info(`${employee.length} matches`)
+            db.close();
+    })
+}
+
+//Export all method
+module.exports = {
+    addEmployee,
+    findEmployee
+}
