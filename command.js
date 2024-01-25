@@ -16,4 +16,12 @@ program
         addEmployee({ firstName, lastName, phone, email });
     })
 
+program
+    .command(`find <name>`)
+    .alias('f')
+    .description('Find an employee')
+    .action(name => findEmployee(name));
+    
+    
+
 program.parse(program.argv);
