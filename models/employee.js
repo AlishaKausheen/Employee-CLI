@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 
-//employee schema
+// Employee schema
 const employeeSchema = mongoose.Schema({
     firstName: { type: String },
     lastName: { type: String },
     phone: { type: String },
-    email: { type: String }
-    
-})
+    email: { type: String }    
+});
 
-//Define and export
+// Define and export the Employee model
 module.exports = mongoose.model("Employee", employeeSchema);
